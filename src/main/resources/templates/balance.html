@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Elenco Operazioni</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link th:href="@{style.css}" rel="stylesheet">
+</head>
+<body>
+<div id="nav">
+    <nav class="navbar navbar-expand-lg fixed-top-container">
+        <a class="navbar-brand" href="#"><img th:src="@{bilancio.webp}" alt="Bilancio" id="logo" /></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mia_nav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="mia_nav">
+            <ul class="navbar-nav" id="lista">
+                <li class="navbar-item"><a class="btn btn-primary" th:href="@{/operation}">Per registrare un Dato</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+      <table id="tabella">
+          <tr class="riga">
+              <td>Data</td>
+              <td>Descrizione</td>
+              <td>Entrata</td>
+              <td>Uscita</td>
+          </tr>
+          <tr th:each="dato : ${dati}" class="riga">
+              <td th:text="${dato.data}">Data</td>
+              <td th:text="${dato.descrizione}">Descrizione</td>
+              <td th:text="${dato.importoEntrata > 0 ? #numbers.formatDecimal(dato.importoEntrata, 0, 'POINT', 2, 'COMMA') + ' € ' : '---'}">Entrata</td>
+              <td th:text="${dato.importoUscita > 0 ? #numbers.formatDecimal(dato.importoUscita, 0, 'POINT', 2, 'COMMA') + ' € ' : '---'}">Uscita</td>
+              <td>
+                  <a class="btn btn-warning" th:href="@{/elimina(id=${dato.id})}">Elimina Dati</a>
+              </td>
+          </tr>
+      </table>
+<br>
+      <div>
+          <h5 id="saldo" th:if="${saldoTotale != null}" th:text="'Totale Saldo ' + ${#numbers.formatDecimal(saldoTotale, 0, 'POINT', 2, 'COMMA') + ' € '}"></h5>
+      </div>
+</body>
+</html>

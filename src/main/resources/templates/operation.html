@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registrazione Dati</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link th:href="@{style.css}" rel="stylesheet">
+</head>
+<h1 id="title">Form per Registrazione Dati Finanziari</h1>
+<body id="sfondoDue">
+  <form action="/operation" method="post" enctype="multipart/form-data">
+      <div id="container">
+      <div class="campi">
+          <input type="date" name="data" placeholder="Aggiungi data" class="caselle" required>
+      </div>
+      <br>
+      <div class="campi">
+          <input type="text" name="descrizione" placeholder="Aggiungi descrizione" class="caselle" required>
+      </div>
+      <br>
+     <div class="campi">
+         <input type="number" name="importoEntrata" placeholder="Aggiungi Entrata" class="caselle">
+     </div>
+      <br>
+      <div class="campi">
+          <input type="number" name="importoUscita" placeholder="Aggiungi Uscita" class="caselle">
+      </div>
+      <br>
+      <div class="campi">
+          <input type="submit" value="Registra" id="casellabutton">
+      </div>
+      </div>
+  </form>
+  <br>
+<div id="botto">
+    <a class="btn btn-primary" th:href="@{/}">Home Page</a>
+</div>
+</body>
+</html>
